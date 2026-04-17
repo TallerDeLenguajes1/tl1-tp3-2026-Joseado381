@@ -20,5 +20,5 @@ int main() {
     getchar();
     return 0;
 }
-// comentario de prueba
-// otra prueba
+
+// ultima prueba desde otra pc
