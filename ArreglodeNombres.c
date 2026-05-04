@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 void MostrarPersonas(char *nombre[]);
+void BuscarNombreporPalabra(char *nombre[]);
 
 int main() {
     char Buff[50], *nombres[5];
@@ -12,19 +13,22 @@ int main() {
     for (int i = 0; i < 5; i++) 
     {
         printf("Nombre %d: ", i + 1);
+        fflush(stdin);
         gets(Buff);
 
         nombres[i] =(char *)malloc((strlen(Buff)+1)*sizeof(char));
         strcpy(nombres[i],Buff);
     }
     
-    MostrarPersonas(nombres);       
+    MostrarPersonas(nombres);
+    BuscarNombreporPalabra(nombres);  
     
     for (int i = 0; i < 5; i++)
     {
         free(nombres[i]);
     }
     
+    printf("---------------Fin del Programa---------------");
     getchar();
     return 0;
 }
@@ -39,6 +43,40 @@ void MostrarPersonas(char *nombre[])
         //printf("%d: %s",i+1, nombre[i]);
         printf("\n");
     }
+}
+
+void BuscarNombreporPalabra(char *nombre[])
+{
+    char buffNombre[50], *encontrado;
+    int flag = 0;
+    while (flag != 1)
+    {
+        printf("---------------Ingrese el nombre que desee buscar:---------------\n");
+        fflush(stdin);
+        gets(buffNombre);
+        
+        for (int i = 0; i < 5; i++)
+        {
+            if (strstr(nombre[i],buffNombre) != NULL)
+            {
+                flag = 1;
+                printf("El nombre encontrado es:\t");
+                puts(nombre[i]);
+                i=4;
+            }else
+            {
+                flag = -1;
+            }
+        }
+        if (flag == -1)
+        {
+            puts("-1");
+            printf("-----------------ERROR Ingrese un nombre valido-----------------\n");
+
+        }
+
+    }
+    
 }
 
 
