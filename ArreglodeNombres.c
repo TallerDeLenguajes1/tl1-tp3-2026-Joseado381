@@ -3,9 +3,11 @@
 #include <stdlib.h>
 
 void MostrarPersonas(char *nombre[]);
+void BuscarNombre(char *nombre[], int ID);
 
 int main() {
     char Buff[50], *nombres[5];
+    int ID;
 
     printf("Ingrese el nombre de 5 personas:\n");
 
@@ -18,7 +20,8 @@ int main() {
         strcpy(nombres[i],Buff);
     }
     
-    MostrarPersonas(nombres);       
+    MostrarPersonas(nombres);
+    BuscarNombre(nombres, ID);
     
     for (int i = 0; i < 5; i++)
     {
@@ -40,6 +43,21 @@ void MostrarPersonas(char *nombre[])
         printf("\n");
     }
 }
+
+void BuscarNombre(char *nombre[], int ID)
+{
+    printf("Ingrese un ID del nombre que quiera mostrar por pantalla: \n");
+    scanf("%d",&ID);
+
+    while (ID<1 || ID>5)
+    {
+        printf("No se encontro el ID \n");
+        scanf("%d",&ID);
+    }
+    printf("ID = %d ",ID);
+    puts(nombre[ID-1]);
+}
+
 
 
 // acceder a un array con arimetrica de punteros *(p+i)
