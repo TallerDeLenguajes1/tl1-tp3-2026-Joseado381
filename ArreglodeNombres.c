@@ -4,9 +4,11 @@
 
 void MostrarPersonas(char *nombre[]);
 void BuscarNombreporPalabra(char *nombre[]);
+void BuscarNombrePorID(char *nombre[], int ID);
 
 int main() {
     char Buff[50], *nombres[5];
+    int ID;
 
     printf("Ingrese el nombre de 5 personas:\n");
 
@@ -22,6 +24,7 @@ int main() {
     
     MostrarPersonas(nombres);
     BuscarNombreporPalabra(nombres);  
+    BuscarNombrePorID(nombres, ID);
     
     for (int i = 0; i < 5; i++)
     {
@@ -49,6 +52,7 @@ void BuscarNombreporPalabra(char *nombre[])
 {
     char buffNombre[50], *encontrado;
     int flag = 0;
+    printf("---------------Buscar nombre por Palabra:---------------\n");
     while (flag != 1)
     {
         printf("---------------Ingrese el nombre que desee buscar:---------------\n");
@@ -72,12 +76,28 @@ void BuscarNombreporPalabra(char *nombre[])
         {
             puts("-1");
             printf("-----------------ERROR Ingrese un nombre valido-----------------\n");
-
+            
         }
-
+        
     }
     
 }
+
+void BuscarNombrePorID(char *nombre[], int ID)
+{
+    printf("---------------Buscar nombre por ID:---------------\n");
+    printf("Ingrese un ID del nombre que quiera mostrar por pantalla: \n");
+    scanf("%d",&ID);
+
+    while (ID<1 || ID>5)
+    {
+        printf("No se encontro el ID \n");
+        scanf("%d",&ID);
+    }
+    printf("ID = %d ",ID);
+    puts(nombre[ID-1]);
+}
+
 
 
 // acceder a un array con arimetrica de punteros *(p+i)
