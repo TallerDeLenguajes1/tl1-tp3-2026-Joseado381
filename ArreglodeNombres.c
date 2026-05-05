@@ -8,23 +8,42 @@ void BuscarNombrePorID(char *nombre[], int ID);
 
 int main() {
     char Buff[50], *nombres[5];
-    int ID;
-
-    printf("Ingrese el nombre de 5 personas:\n");
-
+    int ID, Opcion = 0;
+    
+    printf("---------------Ingrese el nombre de 5 personas:---------------\n");
+    
     for (int i = 0; i < 5; i++) 
     {
         printf("Nombre %d: ", i + 1);
         fflush(stdin);
         gets(Buff);
-
+        
         nombres[i] =(char *)malloc((strlen(Buff)+1)*sizeof(char));
         strcpy(nombres[i],Buff);
     }
-    
     MostrarPersonas(nombres);
-    BuscarNombreporPalabra(nombres);  
-    BuscarNombrePorID(nombres, ID);
+
+    do
+    {
+        printf("\n---------------Seleccione si desea buscar un nombre por ID o por una Palabra clave:---------------\n1.Buscar por ID\n2.Buscar por palabra clave\n3.Salir del programa\n");
+        scanf("%d",&Opcion);
+        switch (Opcion)
+        {
+        case 1:
+            BuscarNombrePorID(nombres, ID);
+            break;
+        case 2:
+            BuscarNombreporPalabra(nombres);  
+            break;
+        case 3:
+            printf("Saliendo...\n");
+            break;
+        
+        default:
+            printf("Opcion no valida.\n");
+            break;
+        }
+    } while (Opcion != 3); 
     
     for (int i = 0; i < 5; i++)
     {
